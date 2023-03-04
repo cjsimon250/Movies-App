@@ -41,48 +41,62 @@ function MovieDetails() {
   };
 
   return (
-    <Card sx={{ maxWidth: 350 }}>
-      <CardHeader title={selectedMovie.title} />
-      <CardMedia
-        component="img"
-        height="400"
-        image={selectedMovie.poster}
-        alt={selectedMovie.title}
-      />
-      {genres.map((genre) => {
-        return (
-          <CardActions>
-            <Typography variant="body2" color="text.secondary">
-              {genre.genre}
-            </Typography>
-          </CardActions>
-        );
-      })}
-      <CardActions disableSpacing>
-        <IconButton
-          aria-label="Back to movie list"
-          onClick={() => {
-            history.push(`/`);
-          }}
-        >
-          <ArrowBackIcon />
-        </IconButton>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>{genres.gernre}</Typography>
-          <Typography paragraph>{selectedMovie.description}</Typography>
-        </CardContent>
-      </Collapse>
-    </Card>
+    <>
+      <Typography variant="h2" color="#e8e8e8">
+        Details
+      </Typography>
+      <Card
+        color="#222"
+        sx={{
+          maxWidth: 350,
+          m: "50px auto",
+          color: "#00334e",
+          backgroundColor: "#e8e8e8",
+        }}
+      >
+        <CardHeader title={selectedMovie.title} />
+        <CardMedia
+          component="img"
+          height="400"
+          image={selectedMovie.poster}
+          alt={selectedMovie.title}
+        />
+        <Box display="flex" justifyContents="space-between">
+          {genres.map((genre) => {
+            return (
+              <CardActions>
+                <Typography variant="body2" color="#00334e">
+                  {genre.genre}
+                </Typography>
+              </CardActions>
+            );
+          })}
+        </Box>
+        <CardActions disableSpacing>
+          <IconButton
+            aria-label="Back to movie list"
+            onClick={() => {
+              history.push(`/`);
+            }}
+          >
+            <ArrowBackIcon />
+          </IconButton>
+          <ExpandMore
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </ExpandMore>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Typography paragraph>{selectedMovie.description}</Typography>
+          </CardContent>
+        </Collapse>
+      </Card>
+    </>
   );
 }
 
