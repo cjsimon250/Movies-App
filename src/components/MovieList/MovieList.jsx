@@ -8,6 +8,7 @@ function MovieList() {
   const dispatch = useDispatch();
   const movies = useSelector((store) => store.movies);
 
+  //Fetch movies on page load
   useEffect(() => {
     dispatch({ type: "FETCH_MOVIES" });
   }, []);
@@ -15,6 +16,7 @@ function MovieList() {
   return (
     <main>
       <h1>MovieList</h1>
+      {/* Mapping over and displaying the list of movies */}
       <section className="movies">
         {movies.map((movie) => {
           return (
@@ -23,6 +25,7 @@ function MovieList() {
               <img
                 src={movie.poster}
                 alt={movie.title}
+                // Send selected movie details to redux store and route to details page
                 onClick={() => {
                   dispatch({
                     type: "SET_SELECTED",
