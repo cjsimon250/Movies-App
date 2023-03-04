@@ -7,6 +7,23 @@ function MovieList() {
   const history = useHistory();
   const dispatch = useDispatch();
   const movies = useSelector((store) => store.movies);
+  const genres = useSelector((store) => store.genres);
+
+  function handleViewMovieDetails(movie) {
+    //setting the movie that is selected in redux store
+    dispatch({
+      type: "SET_SELECTED",
+      payload: movie,
+    });
+
+    //setting the genres being held in the redux store
+    dispatch({
+      type: "SET_GENRES",
+      payload: movie.id,
+    });
+
+    history.push(`/details`);
+  }
 
   //Fetch movies on page load
   useEffect(() => {
@@ -27,11 +44,7 @@ function MovieList() {
                 alt={movie.title}
                 // Send selected movie details to redux store and route to details page
                 onClick={() => {
-                  dispatch({
-                    type: "SET_SELECTED",
-                    payload: movie,
-                  });
-                  history.push(`/details`);
+                  handleViewMovieDetails(movie);
                 }}
               />
             </div>
