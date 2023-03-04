@@ -13,13 +13,14 @@ module.exports = router;
 
 // * route request getting favorites from favorites db table
 router.get("/:id", (req, res) => {
-  const queryText = `SELECT "genres".name AS genre, "movies".title FROM "genres"
+  const queryText = `SELECT "genres".name AS genre FROM "genres"
   JOIN "movies_genres" ON "genres".id = "movies_genres".genre_id
   JOIN "movies" ON "movies".id = "movies_genres".movie_id
-  WHERE "movies".id = :id
+  WHERE "movies".id = $1 
   `;
+  const queryParams = [req.params.id];
   pool
-    .query(queryText)
+    .query(queryText, queryParams)
     .then((result) => {
       res.send(result.rows);
     })
