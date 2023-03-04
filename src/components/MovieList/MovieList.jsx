@@ -2,6 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./MovieList.css";
+// MUI
+import Masonry from "@mui/lab/Masonry";
+import { Box } from "@mui/system";
+import { Typography } from "@mui/material";
 
 function MovieList() {
   const history = useHistory();
@@ -31,25 +35,35 @@ function MovieList() {
 
   return (
     <main>
-      <h1>MovieList</h1>
+      <Typography variant="h2" color="#e8e8e8">
+        MovieList
+      </Typography>
       {/* Mapping over and displaying the list of movies */}
-      <section className="movies">
-        {movies.map((movie) => {
-          return (
-            <div key={movie.id}>
-              <h3>{movie.title}</h3>
-              <img
-                src={movie.poster}
-                alt={movie.title}
-                // Send selected movie details to redux store and route to details page
-                onClick={() => {
-                  handleViewMovieDetails(movie);
-                }}
-              />
-            </div>
-          );
-        })}
-      </section>
+      <Box
+        className="movies"
+        borderRadius="15px"
+        sx={{ width: "90wv", minHeight: 829, m: "auto", p: 2 }}
+      >
+        <Masonry columns={4} spacing={2}>
+          {movies.map((movie) => {
+            return (
+              <div key={movie.id}>
+                <Typography variant="h6" color="#e8e8e8">
+                  {movie.title}
+                </Typography>
+                <img
+                  src={movie.poster}
+                  alt={movie.title}
+                  // Send selected movie details to redux store and route to details page
+                  onClick={() => {
+                    handleViewMovieDetails(movie);
+                  }}
+                />
+              </div>
+            );
+          })}
+        </Masonry>
+      </Box>
     </main>
   );
 }

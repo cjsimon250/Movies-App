@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Box, Button } from "@mui/material";
 
-//mui
+//MUI
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -15,7 +15,6 @@ import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 function MovieDetails() {
   const history = useHistory();
@@ -36,6 +35,7 @@ function MovieDetails() {
     }),
   }));
 
+  //Toggle the expansion
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -61,6 +61,7 @@ function MovieDetails() {
           image={selectedMovie.poster}
           alt={selectedMovie.title}
         />
+        {/* Mapping through the genres array and rendering each */}
         <Box display="flex" justifyContents="space-between">
           {genres.map((genre) => {
             return (
@@ -72,6 +73,7 @@ function MovieDetails() {
             );
           })}
         </Box>
+        {/* Buttons for expanding and going back to the list view */}
         <CardActions disableSpacing>
           <IconButton
             aria-label="Back to movie list"
@@ -90,6 +92,7 @@ function MovieDetails() {
             <ExpandMoreIcon />
           </ExpandMore>
         </CardActions>
+        {/* Selected movie description that is able to be collapsed */}
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography paragraph>{selectedMovie.description}</Typography>
