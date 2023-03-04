@@ -51,7 +51,7 @@ const genres = (state = [], action) => {
 };
 
 // Used to store the details of the selected movie
-const selectedMoveDetails = (state = {}, action) => {
+const selectedMovieDetails = (state = {}, action) => {
   switch (action.type) {
     case "SET_SELECTED":
       return action.payload;
@@ -65,6 +65,7 @@ const storeInstance = createStore(
   combineReducers({
     movies,
     genres,
+    selectedMovieDetails,
   }),
   // Add sagaMiddleware to our store
   applyMiddleware(sagaMiddleware, logger)
