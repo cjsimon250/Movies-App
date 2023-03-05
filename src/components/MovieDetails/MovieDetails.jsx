@@ -11,7 +11,7 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
+import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
